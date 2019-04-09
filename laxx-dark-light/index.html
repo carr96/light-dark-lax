@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+</head>
+<body>
+  <section>
+    <div class="gear lax" data-lax-preset="spinRev" id="gear1">
+            <div class="center"></div>
+            <div class="tooth"></div>
+            <div class="tooth"></div>
+            <div class="tooth"></div>
+            <div class="tooth"></div>
+    </div>  
+    <div class="gear lax" data-lax-preset="spin" id="gear2">
+            <div class="center"></div>
+            <div class="tooth"></div>
+            <div class="tooth"></div>
+            <div class="tooth"></div>
+            <div class="tooth"></div>
+    </div>  
+    <div class="container">
+        <h1>Toggle between Light and Dark Mode</h1>
+        <div class="toggle-container">
+        <input type="checkbox" id="switch" name="theme" /> <label for="switch">Toggle</label>
+        </div>
+        <p> 
+        Scroll down to see some cool animations using lax.js
+        <br>
+        <i class="fas fa-arrow-circle-down"></i>
+        </p>
+    </div>
+  </section>
+  <section id="lax">
+    <h1 class="lax" data-lax-preset="slalom">Lax Animations</h1>
+    <p class="lax" data-lax-preset="rightToLeft-.1 fadeInOut">Lax.js is a cool animation github repo that you find here github.com/alexfoxy/laxxx</p>
+  </section>
+
+  <!-- Transition script -->
+  <script>
+    var checkbox = document.querySelector('input[name=theme]'); 
+    checkbox.addEventListener('change', function(){
+      if(this.checked){
+        trans()
+        document.documentElement.setAttribute('data-theme', 'dark')
+      } else{
+        trans()
+        document.documentElement.setAttribute('data-theme', 'light')
+      }
+    })
+
+    let trans = () => {
+      document.documentElement.classList.add('transition');
+      window.setTimeout(() => {
+        document.documentElement.classList.remove('transition')
+      }, 1000)
+    }
+
+
+  </script>
+  <!-- Lax Script -->
+  <script src="node_modules/lax.js/lib/lax.min.js" ></script>
+  <script> 
+    window.onload = function() {
+    lax.setup() // init
+
+    const updateLax = () => {
+    lax.update(window.scrollY)
+    window.requestAnimationFrame(updateLax)
+    }
+
+    window.requestAnimationFrame(updateLax)
+    }
+</script> 
+</body>
+</html>
